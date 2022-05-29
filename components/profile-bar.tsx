@@ -8,7 +8,7 @@ export default function ProfileBar() {
     return (
         <div className='flex flex-row justify-between px-3 mt-auto text-white rounded-sm bg-discord-grey'>
             <div className="relative w-12 h-12">
-            <img src='/images/grad.jpg' className='w-8 border border-gray-100 rounded-full shadow-sm'/>
+            <img src='/images/prof9.jpeg' className='w-8 rounded-full shadow-sm' loading='lazy'/>
             <div className="absolute w-3 h-3 my-1 bg-green-400 border-2 border-white rounded-full bottom-8 right-4 z-2"></div>
             </div>
             <div className='flex flex-col'>

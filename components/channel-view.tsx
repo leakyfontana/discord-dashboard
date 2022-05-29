@@ -1,6 +1,6 @@
 import { faCirclePlus, faCircleXmark, faHashtag } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { FC } from "react";
 import { Channel } from "../types/channel";
 import ChannelBoard from "./channel-board";
 
@@ -22,49 +22,49 @@ export const MessageList = [
     },
     {
         id: 2,
-        author: 'Enrik Veer',
+        author: 'Katka Zebulon',
         message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam fuga facere, sint maxime incidunt 
         ducimus blanditiis dicta atque vitae voluptatem similique magnam quibusdam necessitatibus laborum hic iste possimus. Est, officia.`,
         picture: '/images/prof2.jpeg'
     },
     {
         id: 3,
-        author: 'Enrik Veer',
+        author: 'Willard Navin',
         message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam fuga facere, sint maxime incidunt 
         ducimus blanditiis dicta atque vitae voluptatem similique magnam quibusdam necessitatibus laborum hic iste possimus. Est, officia.`,
         picture: '/images/prof3.jpeg'
     },
     {
         id: 4,
-        author: 'Enrik Veer',
+        author: 'Nes Cale',
         message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam fuga facere, sint maxime incidunt 
         ducimus blanditiis dicta atque vitae voluptatem similique magnam quibusdam necessitatibus laborum hic iste possimus. Est, officia.`,
         picture: '/images/prof4.jpeg'
     },
     {
         id: 5,
-        author: 'Enrik Veer',
+        author: 'Samantha Brage',
         message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam fuga facere, sint maxime incidunt 
         ducimus blanditiis dicta atque vitae voluptatem similique magnam quibusdam necessitatibus laborum hic iste possimus. Est, officia.`,
         picture: '/images/prof5.jpeg'
     },
     {
         id: 6,
-        author: 'Enrik Veer',
+        author: 'Radek Ofelia',
         message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam fuga facere, sint maxime incidunt 
         ducimus blanditiis dicta atque vitae voluptatem similique magnam quibusdam necessitatibus laborum hic iste possimus. Est, officia.`,
         picture: '/images/prof6.jpeg'
     },
     {
         id: 7,
-        author: 'Enrik Veer',
+        author: 'Yaakov Alex',
         message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam fuga facere, sint maxime incidunt 
         ducimus blanditiis dicta atque vitae voluptatem similique magnam quibusdam necessitatibus laborum hic iste possimus. Est, officia.`,
         picture: '/images/prof7.jpeg'
     },
     {
         id: 8,
-        author: 'Enrik Veer',
+        author: 'Vija Davyd',
         message: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam fuga facere, sint maxime incidunt 
         ducimus blanditiis dicta atque vitae voluptatem similique magnam quibusdam necessitatibus laborum hic iste possimus. Est, officia.`,
         picture: '/images/prof8.jpeg'
@@ -73,18 +73,23 @@ export const MessageList = [
 ]
 
 type specialProps = {
-    channel: Channel,
-    handleRemove: any
+    id: number,
+    name: string,
+    remove: any
 }
 
-export default function ChannelView(Props: Channel) {
+const ChannelView: FC<specialProps> = ({
+    name,
+    id,
+    remove: {removeChannel}
+}) => {
 
     return (
         <div className='flex flex-col justify-between flex-auto w-auto h-screen'>
             <div className='flex flex-row w-full gap-1 py-2 text-center'>
                 <FontAwesomeIcon icon={faHashtag} size='xs' className='w-3'  />
-                <h2>{Props.name}</h2>
-                <button className='pr-10 ml-auto'>
+                <h2>{name}</h2>
+                <button className='pr-4 ml-auto'>
                     <FontAwesomeIcon icon={faCircleXmark} size='xs' className='w-5' />
                 </button>
             </div>
@@ -93,11 +98,13 @@ export default function ChannelView(Props: Channel) {
                     return (
                     <div key={message.id} className='flex flex-row'>
                         <div className="relative w-3/12 h-12 pl-6">
-                            <img src={message.picture} className='w-8 rounded-full shadow-sm'/>
+                            <img src={message.picture} className='w-8 rounded-full shadow-sm' loading='lazy' />
                             <div className="absolute w-3 h-3 my-1 bg-green-400 border-2 border-white rounded-full bottom-8 right-4 z-2"></div>
                         </div>
-                        
-                        <p className='w-9/12'>{message.message}</p>
+                        <div className='flex flex-col w-9/12 gap-2'>
+                            <h2 className='text-discord-blue'>{message.author}</h2>
+                            <p>{message.message}</p>
+                        </div>
                     </div>
                     )
                 })}
@@ -113,3 +120,5 @@ export default function ChannelView(Props: Channel) {
         </div>
     )
 }
+
+export default ChannelView;

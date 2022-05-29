@@ -67,9 +67,9 @@ export default function Dropdown(Props: dropdownProps) {
             </div>
             <div className={`${isExpanded ? 'flex flex-col gap-2': 'hidden'}`} > {ChannelList.map((channel: Channel) => {
                 return (
-                    <>
-                        <ChannelItem key={channel.id} name={channel.name} id={channel.id} />
-                    </>
+                    <div key={channel.id}>
+                        <ChannelItem name={channel.name} id={channel.id} />
+                    </div>
                 )
             })}
             </div>
