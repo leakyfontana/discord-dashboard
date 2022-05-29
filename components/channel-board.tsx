@@ -33,7 +33,11 @@ export default function ChannelBoard() {
             <div ref={drop} className='flex flex-row justify-center content-center items-center max-w-[66%] w-8/12 text-white gap-1'>
                 <h2 className={`${board.length === 0 ? 'block' : 'hidden'}`}>Drag Channels Here</h2>
                 {board.map((channel: Channel) => {
-                    return <ChannelView name={channel.name}  />
+                    return (
+                        <div key={channel.id}>
+                            <ChannelView name={channel.name}  />
+                        </div>
+                    )
                 })}
             </div>
         </>
