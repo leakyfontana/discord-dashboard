@@ -22,10 +22,10 @@ export default function ChannelBoard() {
         setBoard((board) => [...board, channelList[0]])
     };
 
-    const removeChannel = (id: number | undefined) => {
-        console.log('hittt');
-        var idx = ChannelList.map(function(x) {return x.id; }).indexOf(id!)
-        setBoard(board.slice(idx));
+    const removeChannel = (id: number | undefined, event: any) => {
+        console.log('board');
+        setBoard((board) => board.splice(board.findIndex(channel => channel.id === id!), 1));
+        console.log('board');
     };
 
 
@@ -36,7 +36,7 @@ export default function ChannelBoard() {
                 {board.map((channel: Channel) => {
                     return (
                         <div key={channel.id}>
-                            <ChannelView name={channel.name!} id={channel.id!} remove={removeChannel} />
+                            <ChannelView name={channel.name!} id={channel.id!} remove={(event: any) => removeChannel(channel.id, event)} />
                         </div>
                     )
                 })}

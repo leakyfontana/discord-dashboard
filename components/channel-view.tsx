@@ -81,7 +81,7 @@ type specialProps = {
 const ChannelView: FC<specialProps> = ({
     name,
     id,
-    remove: {removeChannel}
+    remove
 }) => {
 
     return (
@@ -90,7 +90,7 @@ const ChannelView: FC<specialProps> = ({
                 <FontAwesomeIcon icon={faHashtag} size='xs' className='w-3'  />
                 <h2>{name}</h2>
                 <button className='pr-4 ml-auto'>
-                    <FontAwesomeIcon icon={faCircleXmark} size='xs' className='w-5' />
+                    <FontAwesomeIcon icon={faCircleXmark} size='xs' className='w-5' onClick={remove}/>
                 </button>
             </div>
             <div className='flex flex-col gap-3 overflow-scroll'>
@@ -109,13 +109,11 @@ const ChannelView: FC<specialProps> = ({
                     )
                 })}
             </div>
-            <div className='flex flex-row w-auto gap-3 py-2 bg-discord-grey'>
+            <div className='flex flex-row w-auto gap-3 p-2 bg-discord-grey'>
+                <input className='w-full p-1 text-white rounded-md bg-discord-dark-grey' type='text' placeholder='Send Message'></input>
                 <button>
                     <FontAwesomeIcon icon={faCirclePlus} size='xs' className='w-5'  />
                 </button>
-                <form className='w-auto text-black'>
-                    <input type='text' placeholder='Send Message'></input>
-                </form>
             </div>
         </div>
     )
